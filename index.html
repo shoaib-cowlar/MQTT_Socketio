@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+      let socket = io("ws://localhost:8080");
+      let el;
+
+      socket.on("time", (timeString) => {
+        let el = document.getElementById("server-time");
+        el.innerHTML = "Server time: " + timeString;
+      });
+
+      socket.on("JPLearning_SensorData", (data) => {
+        console.log(data);
+      });
+    </script>
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="server-time"></p>
+  </body>
+</html>
